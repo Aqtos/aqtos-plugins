@@ -41,7 +41,8 @@ No package needed: Settings → Connectors → Add custom connector, URL `https:
 
 ## ChatGPT
 
-`mcp.json` points at dev (`https://dev.aqtos.io/api/mcp`); change it for another tenant.
+`mcp.json` points ChatGPT Developer Mode at dev (`https://dev.aqtos.io/api/mcp`); use your own workspace's URL to
+test another one. A public listing takes its URL from the submission instead (see below).
 
 1. ChatGPT Settings → Security and login → enable **Developer Mode**.
 2. Plugins → **+** → add the MCP server URL, authentication OAuth. ChatGPT registers itself with Aqtos and opens the
@@ -55,7 +56,13 @@ Local marketplace for the ChatGPT desktop app: copy `.agents/plugins/marketplace
 
 ## Before a public listing
 
-- One public URL for all tenants: ChatGPT's directory takes a single production MCP URL, and today each tenant has
-  its own.
-- Verified publisher identity and domain verification on the OpenAI Platform; reviewer demo credentials without MFA.
-- Screenshots in `assets/` and `screenshots` in `plugin.json`.
+Each workspace keeps its own address (`https://<workspace>.aqtos.io/api/mcp`); no shared URL or gateway is needed.
+
+- **Claude**: the directory connector uses a **Per-customer URL**, `https://${user_config.workspace}.aqtos.io/api/mcp`,
+  and this plugin asks for the same `workspace`, so users with both see one set of tools. Per-customer URLs are
+  reviewed more slowly ("partner servers only"). The repository must be public before the plugin listing goes live.
+- **ChatGPT**: submit the MCP server as a **Template** URL, `https://{workspace}.aqtos.io/api/mcp`; OpenAI has to
+  approve template URLs first. `mcp.json` here only points ChatGPT Developer Mode at dev. Also needed: verified
+  publisher identity and domain verification on the OpenAI Platform, and reviewer demo credentials without MFA.
+- Both: a demo workspace with sample data for reviewers, and screenshots in `assets/` (plus `screenshots` in
+  `plugin.json` for ChatGPT).
