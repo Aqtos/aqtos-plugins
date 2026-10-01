@@ -1,0 +1,15 @@
+{
+  "name": "aqtos",
+  "description": "Aqtos plugins for Claude Code",
+  "owner": {
+    "name": "IWM Network",
+    "url": "https://aqtos.com"
+  },
+  "plugins": [
+    {
+      "name": "aqtos",
+      "source": "./plugins/aqtos",
+      "description": "Work in Aqtos: tasks, projects, CRM, finance and HR, as yourself"
+    }
+  ]
+}
