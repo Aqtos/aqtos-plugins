@@ -1,13 +1,17 @@
 {
   "name": "aqtos",
   "displayName": "Aqtos",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Work in Aqtos from Claude: find and update tasks, projects, clients, invoices and more, as yourself and with your own permissions.",
   "author": {
     "name": "IWM Network",
     "url": "https://aqtos.com"
   },
   "homepage": "https://aqtos.com",
+  "repository": "https://github.com/Aqtos/aqtos-plugins",
+  "privacyPolicyUrl": "https://aqtos.com/privacy/",
+  "termsOfServiceUrl": "https://aqtos.com/terms/",
+  "supportUrl": "https://aqtos.com/contact/",
   "license": "MIT",
   "keywords": [
     "aqtos",
