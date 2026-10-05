@@ -1,7 +1,7 @@
 {
   "name": "aqtos",
   "displayName": "Aqtos",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Work in Aqtos from Claude: find and update tasks, projects, clients, invoices and more, as yourself and with your own permissions.",
   "author": {
     "name": "IWM Network",
@@ -22,7 +22,7 @@
     "hr"
   ],
   "userConfig": {
-    "workspace": {
+    "key": {
       "type": "string",
       "title": "Your Aqtos workspace",
       "description": "The part before .aqtos.io in the address you sign in at, e.g. yourcompany for yourcompany.aqtos.io",

@@ -2,7 +2,7 @@
   "mcpServers": {
     "aqtos": {
       "type": "http",
-      "url": "https://${user_config.workspace}.aqtos.io/api/mcp"
+      "url": "https://${user_config.key}.aqtos.io/api/mcp"
     }
   }
 }
