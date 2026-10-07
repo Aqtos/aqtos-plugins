@@ -21,8 +21,11 @@ turn "today", "this week" or "next month" into real dates, and to answer "my ...
    COMPLETED, PAID, VOID, CLOSED) unless the user asks for them.
 3. Lists such as assignees, members or items belong to the parent record: to find who is on Project X, query the
    Project, not Person.
-4. No results usually means the filter was too narrow. Try a broader one before saying nothing was found.
-5. If a result says `not_permitted` or `not_readable`, stop. The user doesn't have access to that data. Say so
+4. For who is out today, query `AbsentEmployeeView`: everyone currently away and when they're back. For time off
+   over a period, such as vacation days taken in a month, query `AbsenceDaysView`; most users see only their own
+   absences there, HR sees everyone's.
+5. No results usually means the filter was too narrow. Try a broader one before saying nothing was found.
+6. If a result says `not_permitted` or `not_readable`, stop. The user doesn't have access to that data. Say so
    plainly and don't look for it another way.
 
 ## Making changes (writing)
