@@ -23,7 +23,12 @@ turn "today", "this week" or "next month" into real dates, and to answer "my ...
    Project, not Person.
 4. For who is out today, query `AbsentEmployeeView`: everyone currently away and when they're back. For time off
    over a period, such as vacation days taken in a month, query `AbsenceDaysView`; most users see only their own
-   absences there, HR sees everyone's.
+   absences there, HR sees everyone's. To count days taken in a period:
+   - Count only APPROVED and FINISHED absences; PENDING and UNAPPROVED ones were not taken.
+   - Include every absence that overlaps the period (`fromDate` before its end and `toDate` on or after its
+     start), not only those that start in it.
+   - `days` is the working days of the whole absence. For one that crosses the start or end of the period, count
+     only its working days inside the period.
 5. No results usually means the filter was too narrow. Try a broader one before saying nothing was found.
 6. If a result says `not_permitted` or `not_readable`, stop. The user doesn't have access to that data. Say so
    plainly and don't look for it another way.
