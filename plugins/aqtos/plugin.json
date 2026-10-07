@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "aqtos",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Work in Aqtos from chat: find and update tasks, projects, clients, invoices and more, as yourself and with your own permissions.",
   "author": {
     "name": "IWM Network",
@@ -21,7 +21,7 @@
     "com.openai": {
       "interface": {
         "displayName": "Aqtos",
-        "shortDescription": "Your Aqtos workspace: tasks, projects, CRM, finance and HR",
+        "shortDescription": "Work in your Aqtos workspace",
         "longDescription": "Connect your Aqtos account to look up and change what you can in Aqtos: tasks and projects, clients and leads, invoices and expenses, calendar events, employees and more. Everything runs as you, with the same permissions you have in Aqtos, and anything destructive is confirmed with you first.",
         "developerName": "IWM Network",
         "category": "Productivity",
@@ -30,6 +30,7 @@
           "Write"
         ],
         "websiteURL": "https://aqtos.com",
+        "supportURL": "https://aqtos.com/contact/",
         "privacyPolicyURL": "https://aqtos.com/privacy/",
         "termsOfServiceURL": "https://aqtos.com/terms/",
         "defaultPrompt": [
@@ -37,7 +38,8 @@
           "Create a task in Aqtos for the website redesign project and assign it to me.",
           "Which Aqtos invoices are still unpaid?"
         ],
-        "brandColor": "#4DCCD6",
+        "brandColor": "#32C4D0",
+        "brandColorDark": "#4DCCD6",
         "composerIcon": "./assets/icon.png",
         "logo": "./assets/logo.png"
       }
