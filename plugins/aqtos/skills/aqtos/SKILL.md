@@ -46,6 +46,9 @@ turn "today", "this week" or "next month" into real dates, and to answer "my ...
 5. Run it with `execute_aqtos_command`. For a plain new task or calendar event, `create_task` and
    `create_calendar_event` are simpler.
 6. After a change, confirm what was done in one short sentence.
+7. To clock out or start or end a break, first find the open clock-in: query `EmployeeClockInView` for the user's
+   records with `status` CLOCKED_IN or BREAK. Its `id` is the `employeeClockInId` and its `employee` the
+   `employeeId` those commands take; break IDs are in its `employeeClockInBreaks`.
 
 ## Files and attachments
 
