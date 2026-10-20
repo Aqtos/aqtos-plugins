@@ -37,10 +37,13 @@ turn "today", "this week" or "next month" into real dates, and to answer "my ...
 
 1. Find the right command with `search_aqtos_commands` and read its schema: required fields, types, and which
    fields expect an ID.
-2. Turn every name the user gave into an ID with `resolve_aqtos_name`, using the entity type from the field's
-   `identifier` annotation. Never put a name in an ID field. IDs that came back from a query can be used as they
-   are. With several close matches, or `"truncated": true`, ask the user which one they mean instead of picking.
-3. Person, Employee and User share the same ID: `Employee:abc` is `Person:abc`.
+2. ID fields take an ID, or the name the user gave. A name is used only when exactly one record you can see
+   matches; the answer then lists it under `resolvedNames`, so tell the user which record was used. IDs that came
+   back from a query can be used as they are. If the answer has `identifierErrors`, nothing was run: for
+   `ambiguous`, show the candidates and ask the user which one they mean instead of picking; for `no_match`, check
+   the spelling or look the name up with `resolve_aqtos_name`; for `wrong_type`, pass an ID of the expected type.
+   Then retry with IDs.
+3. Person, Employee and User share the same ID: `Employee:abc` is `Person:abc`, and any of the three is accepted.
 4. For anything that deletes, archives, cancels, voids or changes many records at once, first tell the user exactly
    what will happen and wait for a clear yes.
 5. Run it with `execute_aqtos_command`. For a plain new task or calendar event, `create_task` and
