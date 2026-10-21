@@ -1,10 +1,10 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "aqtos",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Work in Aqtos from chat: find and update tasks, projects, clients, invoices and more, as yourself and with your own permissions.",
   "author": {
-    "name": "IWM Network",
+    "name": "Aqtos.com",
     "url": "https://aqtos.com"
   },
   "homepage": "https://aqtos.com",
@@ -23,7 +23,7 @@
         "displayName": "Aqtos",
         "shortDescription": "Work in your Aqtos workspace",
         "longDescription": "Connect your Aqtos account to look up and change what you can in Aqtos: tasks and projects, clients and leads, invoices and expenses, calendar events, employees and more. Everything runs as you, with the same permissions you have in Aqtos, and anything destructive is confirmed with you first.",
-        "developerName": "IWM Network",
+        "developerName": "Aqtos.com",
         "category": "Productivity",
         "capabilities": [
           "Read",
