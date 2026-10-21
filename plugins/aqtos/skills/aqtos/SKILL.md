@@ -61,17 +61,32 @@ turn "today", "this week" or "next month" into real dates, and to answer "my ...
 ## Files and attachments
 
 Commands take attachments as document IDs (`Document:...`) in their `attachments` field, so a file has to be in
-Aqtos first. To attach a file the user has, for example one attached in this chat:
+Aqtos first. To add files to a task, the upload tools also take `attachToTask` and do it for you.
 
-1. If you have the file's exact bytes and it is small, call `upload_document` with them in base64. Only the real
-   bytes will do: never a summary, the extracted text or a re-created file. Aqtos checks the content and refuses a
-   file that is cut off or altered.
-2. If you don't have the exact bytes, the file is large, or `upload_document` returns an error, call
-   `create_upload_link`. Give the user the link, ask them to upload the file there and tell you when they're done.
-   The link works once, only for them, for 15 minutes.
+**A file you made or saved yourself** (an image, document or page you generated in your sandbox or code
+environment):
+
+1. Get its size in bytes and SHA-256 from the shell, e.g. `stat -c %s file` and `sha256sum file`.
+2. Call `create_agent_upload_url` with the filename, size and checksum, plus `attachToTask` if it belongs on a task.
+3. Run the `command` it returns (a `curl -X PUT --data-binary @file ...`) with the file's path. The printed JSON has
+   the document ID, and `attachedTo` when it was added to the task. A refused upload (wrong size or checksum) can
+   be sent again until the URL expires after 15 minutes.
+4. If you can't run shell commands or the URL can't be reached from your environment, use the upload link below,
+   and download the file for the user first.
+
+Don't write out a file's base64 yourself unless it is tiny (a few KB): `upload_document` needs every character, and
+a cut-off or altered file is refused.
+
+**A file the user has**, for example one attached in this chat:
+
+1. If you have its exact bytes and it is small, call `upload_document` with them in base64. Only the real bytes will
+   do: never a summary, the extracted text or a re-created file.
+2. Otherwise, or if `upload_document` returns an error, call `create_upload_link` (with `attachToTask` when the files
+   go on a task). Give the user the link, ask them to upload the files there and tell you when they're done. The
+   link works once, only for them, for 60 minutes, and takes several files.
 3. When they say it's done, call `get_uploaded_documents` with the `uploadId`. If it is still PENDING, ask them to
    finish the upload instead of calling it again and again.
-4. Put the returned document IDs in the command's `attachments` field.
+4. Put the returned document IDs in the command's `attachments` field, unless they were already added to the task.
 
 For a file the user only has as a public link, `upload_document_from_url` stores it straight from the link. A link
 that opens a page showing the file, such as a Google Drive "view" link, won't work: ask for the direct download
