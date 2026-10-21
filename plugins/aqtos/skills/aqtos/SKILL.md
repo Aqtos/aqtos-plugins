@@ -31,8 +31,11 @@ turn "today", "this week" or "next month" into real dates, and to answer "my ...
      start), not only those that start in it.
    - `days` is the working days of the whole absence. For one that crosses the start or end of the period, count
      only its working days inside the period.
-5. No results usually means the filter was too narrow. Try a broader one before saying nothing was found.
-6. If a result says `not_permitted` or `not_readable`, stop. The user doesn't have access to that data. Say so
+5. Money: `amount` and similar fields are in the record's own `currency`. Fields ending in `InDefaultCurrency`
+   are converted to the workspace's default currency, given as `defaultCurrency` on the same record. Always show
+   each amount with its own currency, e.g. "419.65 EUR (25,806.38 MKD)", and add up totals only in one currency.
+6. No results usually means the filter was too narrow. Try a broader one before saying nothing was found.
+7. If a result says `not_permitted` or `not_readable`, stop. The user doesn't have access to that data. Say so
    plainly and don't look for it another way.
 
 ## Making changes (writing)
