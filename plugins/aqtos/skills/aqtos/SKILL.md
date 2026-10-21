@@ -18,7 +18,9 @@ turn "today", "this week" or "next month" into real dates, and to answer "my ...
 1. Call `get_aqtos_entity_schema` for the entity type before querying it. Never guess field names, filter operators
    or enum values.
 2. Query with `query_aqtos_entities`. For current or open work, leave out finished states (DONE, CANCELLED,
-   COMPLETED, PAID, VOID, CLOSED) unless the user asks for them.
+   COMPLETED, PAID, VOID, CLOSED) unless the user asks for them. Tasks ("my tasks", "my issues") come back open
+   only by default: done and cancelled tasks are left out. To include them, filter on `doneStatus` or `cancelled`,
+   e.g. `{"doneStatus": true}` for tasks the user finished.
 3. Lists such as assignees, members or items belong to the parent record: to find who is on Project X, query the
    Project, not Person.
 4. For who is out today, query `AbsentEmployeeView`: everyone currently away and when they're back. For time off
