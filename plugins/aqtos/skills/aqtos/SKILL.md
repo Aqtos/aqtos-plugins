@@ -74,9 +74,10 @@ environment):
 
 1. Get its size in bytes and SHA-256 from the shell, e.g. `stat -c %s file` and `sha256sum file`.
 2. Call `create_agent_upload_url` with the filename, size and checksum, plus `attachToTask` if it belongs on a task.
-3. Run the `command` it returns (a `curl -X PUT --data-binary @file ...`) with the file's path. The printed JSON has
-   the document ID, and `attachedTo` when it was added to the task. A refused upload (wrong size or checksum) can
-   be sent again until the URL expires after 15 minutes.
+3. It returns data, not a command: send the file's bytes as an HTTP PUT to `uploadUrl` with its `headers`, e.g.
+   `curl -sS -X PUT --data-binary @<file> -H 'Content-Type: <type>' <uploadUrl>`, filling in only those values.
+   The reply's JSON has the document ID, and `attachedTo` when it was added to the task. A refused upload (wrong
+   size or checksum) can be sent again until the address expires after 15 minutes.
 4. If you can't run shell commands or the URL can't be reached from your environment, use the upload link below,
    and download the file for the user first.
 
